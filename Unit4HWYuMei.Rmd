@@ -1,0 +1,46 @@
+---
+title: "Unit4HW"
+author: "YuMei Bennett"
+date: "February 2, 2018"
+output: html_document
+---
+# Unit4 Q1
+```{r Q1, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# install fivethirtyeight packages. R command show below as comment, to avoid multiple installs everytime
+# install.packages("fivethirtyeight")
+library(fivethirtyeight)
+data(package="fivethirtyeight")
+df<-biopics
+vignette("fivethirtyeight", package = "fivethirtyeight")
+# biopics data set is about Straight Outta Compton Is The Rare Biopic Not About White Dudes
+# URL below provides detailed descripton about fivethirtyeight package.
+# "http://127.0.0.1:26624/library/fivethirtyeight/doc/fivethirtyeight.html"
+dim(df)
+colnames(df)
+```
+# Unit4 Q2
+```{r Q2, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+colnames(df)
+ncol(df)
+#install.packages("plyr")
+library(plyr)
+
+major_count<-count(df,c("person_of_color" ,"subject_sex","number_of_subjects","subject_race"))
+
+major_count <- table(df$number_of_subjects, df$subject_sex)
+
+par(las=2)
+barplot(major_count, main="Number of Movies in major category by number of subjects and sex",beside=TRUE,
+  xlab="Gender",names=c("Male","Female"), 
+  col=c("darkblue","red","orange","green"),
+ 	ylab="number of movies",legend=c("one subject","two subjects","three subjects","four subjects"))
+
+write.csv(df, "E:/University/SMU/Doing the Data Science/Unit4/biopicsdf2.csv", row.names=FALSE)
+
+```
+
+
