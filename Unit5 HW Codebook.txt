@@ -1,0 +1,29 @@
+
+yob2015.txt and yob2016.txt:
+
+The data () given contains client's research for popular children names in 2015 and 2016.
+We have been asked to sort out the data to find out top 10 girl names.
+
+Both yob2016.txt and yob2016.txt contains 3 columns, in sequence, they are
+name	boy or girl	number of new borns in that year
+
+We imported both original text data file into R, performed some cleaning up action to make the data more fitted for further analysis and presentation. 
+
+final:
+Add varible name for each column, keep the same varible names for both file.
+
+first column (name) --> 				FirstName
+Second column (boy or girl) -->				Gneder
+Third column (number of new borns in that year) -->	NumberofChildren 
+
+Combined two text file into "final"
+
+Create new varible Total for 2015 and 2016 total number of children that was given the same name
+
+
+final2:
+Sort by "Total" in decending order, created data frame final2
+
+Delete all rows that Gender = M, to find top 10 girls name.     
+
+ 

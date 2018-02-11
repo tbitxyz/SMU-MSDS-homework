@@ -1,0 +1,75 @@
+---
+title: "Unit5HWYuMei"
+author: "YuMei Bennett"
+date: "February 6, 2018"
+output: html_document
+---
+
+# Unit5 HW Q1
+```{r Q1, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+df <- read.table("E:/University/SMU/Doing the Data Science/Unit5/Assignment5files/yob2016.txt", sep=";",header = FALSE)
+colnames(df) <- c("FirstName","Gender","NumberofChildren")
+head(df)
+summary(df)
+str(df)
+dim(df)
+grep("yyy$",df$FirstName, value=TRUE)
+grep("yyy$",df$FirstName)
+y2016<- df[-212,]
+dim(y2016)
+grep("yyy$",y2016$FirstName)
+
+```
+
+# Unit5 HW Q2
+```{r Q2, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+
+df <- read.table("E:/University/SMU/Doing the Data Science/Unit5/Assignment5files/yob2015.txt", sep=",",header = FALSE)
+colnames(df) <- c("FirstName","Gender","NumberofChildren")
+head(df)
+summary(df)
+str(df)
+dim(df)
+y2015<-df
+
+tail(y2015,n=10)
+#name all starts with z, all boys and every last 10 names has 5 boys named after.
+
+grep("yyy$",y2015$FirstName, value=TRUE)
+grep("yyy$",y2015$FirstName)
+y2015<- y2015[-212,]
+dim(y2015)
+grep("yyy$",y2015$FirstName)
+
+final<-merge(y2016,y2015,by=c("FirstName","Gender"),all=FALSE)
+dim(final)
+
+grep("^NA$",final$NumberofChildren.x)
+grep("^NA$",final$NumberofChildren.y)
+```
+# Unit5 HW Q3
+```{r Q3, include=TRUE, echo=TRUE}
+
+final$Total <- final$NumberofChildren.x + final$NumberofChildren.y
+# in 2015 and 2016, total number of children have given one of these popular names
+sum(final$Total)
+
+library(dplyr)
+final2<-arrange(final %>% filter(Total>10000), desc(Total))
+#top 10 most popular names
+head(final2,n=10)
+
+# drop boy names row
+finalg<-final2[!(final2$Gender=="M"),]
+top10girlname<-head(finalg,n=10)
+
+top10 = subset(top10girlname, select = -c(Gender,NumberofChildren.x,NumberofChildren.y) )
+top10
+write.csv(top10, file = "E:/University/SMU/Doing the Data Science/Unit5/top10.csv")
+
+```
+# Github Repository
+https://github.com/tbitxyz/SMU-MSDS-homework
